@@ -1,0 +1,74 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+site_url: http://localhost:1313
+display_url: http://localhost:1313
+
+logo:
+  src: http://localhost:1313/favicon.ico
+  show_in_header: true
+
+backend:
+  name: github
+  repo: GKSozialista/gks-web-code
+
+media_folder: "assets/img/uploads"
+public_folder: "img/uploads"
+
+media_libraries:
+  stock_assets:
+    providers: []
+
+i18n:
+  structure: multiple_files
+  locales: [eu, es]
+  default_locale: eu
+
+collections:
+  - name: "posts"
+    i18n: true
+    label: "Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", i18n: true, widget: "string" }
+      - {
+          label: "Publish Date",
+          name: "date",
+          i18n: duplicate,
+          widget: "datetime",
+        }
+      - {
+          label: "Featured Image",
+          name: "image",
+          i18n: duplicate,
+          widget: "image",
+        }
+      - { label: "Summary", name: "summary", i18n: true, widget: "text" }
+      - { label: "Body", name: "body", i18n: true, widget: "markdown" }
+
+singletons:
+  - name: about
+    i18n: true
+    label: About Page
+    file: content/aboutus.{{locale}}.md
+    fields:
+      - { label: "Title", name: "title", i18n: true, widget: "string" }
+      - { label: "Slug", name: "slug", i18n: true, widget: "string" }
+      - {  name: "type", widget: "hidden", i18n: duplicate, default: "Page"}
+      - {  name: "layout", widget: "hidden", i18n: duplicate, default: "aboutus"}
+      - label: "Menus"
+        name: "menus"
+        i18n: true
+        widget: "object"
+        fields:
+          - label: "Main"
+            name: "main"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Title", name: "title", i18n: true, widget: "string" }
+              - { label: "Weight", name: "weight", i18n: duplicate, widget: "number" }
+      - { label: "Body", name: "body", i18n: true, widget: "markdown" }
+      
+            
+

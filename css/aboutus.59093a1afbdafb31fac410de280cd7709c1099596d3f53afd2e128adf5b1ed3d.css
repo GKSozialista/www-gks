@@ -1,0 +1,1 @@
+.carousel{display:flex;gap:.5rem;overflow-x:scroll;scroll-snap-type:x mandatory}.carousel li{flex:1 1 0px;min-width:320px;overflow:hidden;scroll-snap-align:center}.carousel img{object-fit:contain}
